@@ -80,8 +80,8 @@ router.delete("/delete",function(req,res) {
    if(req.body)
    {
     request1=req.body.title;
-     request2=req.body.comments;
-   newsLive.update({title:request1},{$set:{comments:request2}},function(err){
+     request2=req.body.Comments;
+   newsLive.update({title:request1},{$set:{Comments:request2}},function(err){
 
        if(err) {
          res.send(err);

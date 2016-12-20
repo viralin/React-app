@@ -12,6 +12,8 @@ render() {
            <li><Link to="/FavouriteNews">Favourite News</Link></li>
            <li><Link to="/ContactUs">Contact Us</Link></li>
             <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Register</Link></li>
+
 
 
            <li><Link to="/about">About Us</Link></li>

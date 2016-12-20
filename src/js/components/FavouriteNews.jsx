@@ -37,6 +37,7 @@ $.ajax({
          }.bind(this)
 });
 }
+
 render()
 {
 var object=this.state.str.map(function(e){

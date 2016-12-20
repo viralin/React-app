@@ -12,6 +12,7 @@ import ContactUs from './components/ContactUs.jsx';
 import NavBar from './components/NavBar.jsx';
 import FavNews from './components/FavouriteNews.jsx';
 import login from './components/login.jsx';
+import signup from './components/signup.jsx';
 
 class MainComponent extends React.Component{
 
@@ -36,6 +37,8 @@ ReactDOM.render(
 
              <Route path="/FavouriteNews" components={FavNews}/>
              <Route path="/login" components={login}/>
+             <Route path="/signup" components={signup}/>
+
 
        </Route>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
+import {hashHistory} from 'react-router';
 
 
 export default class login extends React.Component
@@ -20,7 +20,7 @@ var pass=document.getElementById('password').value;
   console.log("successfully loged to database");
 
     alert("succesfully loggedin");
-    browserHistory.push('/home');
+    hashHistory.push('/#/home');
   }.bind(this),
   error: function(err){
     alert("check the username and password");

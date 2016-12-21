@@ -30,7 +30,7 @@ return (
 ReactDOM.render(
 <Router history={hashHistory}>
              <Route path="/" components={MainComponent} >
-             <Route path="/home" components={HomeComponent}/>
+             <Route path="/index" components={HomeComponent}/>
              <IndexRoute components={HomeComponent} />
              <Route path="/about" components={About}/>
              <Route path="/contactUs" components={ContactUs}/>

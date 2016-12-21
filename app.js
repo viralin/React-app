@@ -13,9 +13,12 @@ var webpackConfig = require("../webpack.config");
 var webpackHotMiddleware = require('webpack-hot-middleware');
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var userinfo = require('./models/userauthentication');
 //var login = require('./routes/users/login');
 var news = require('./routes/news');
+var passport=require('passport');
+var LocalStrategy=require('passport-local').Strategy;
+var connectflash=require('connect-flash');
 
 
 
@@ -61,6 +64,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/assets')));
 
+
+
+app.post('/login',
+ passport.authenticate('local', { failureRedirect: '/login' }),
+ function(req, res) {
+   res.redirect('/');
+ });
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(connectflash());
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/news',news);
@@ -70,6 +86,30 @@ app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
+});
+
+
+
+passport.use(new LocalStrategy(
+function(username, password, done) {
+ userinfo.findOne({ username: username ,password:password}, function (err, user) {
+   if (err) { return done(err); }
+   if (!user) { return done(null, false); }
+ //  if (!users.verifyPassword(password)) { return done(null, false); }
+   return done(null, user);
+ });
+}
+));
+
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
 });
 
 // error handlers
